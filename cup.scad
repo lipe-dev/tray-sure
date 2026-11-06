@@ -40,15 +40,15 @@ inner_d = cup_d - 2*cup_wall;
 module cup_body() {
     difference() {
         linear_extrude(cup_h)
-            stadium(cup_w, cup_d);
+            stadium(cup_w, cup_d, end_r);
         translate([0, 0, cup_base_t])
             linear_extrude(cup_h)
-                stadium(inner_w, inner_d);
+                stadium(inner_w, inner_d, end_r - cup_wall);
     }
     intersection() {
         translate([0, 0, cup_base_t])
             linear_extrude(cup_h - cup_base_t)
-                stadium(inner_w, inner_d);
+                stadium(inner_w, inner_d, end_r - cup_wall);
         union() {
             if (cup_cols > 1)
                 for (i = [1:cup_cols-1]) {
